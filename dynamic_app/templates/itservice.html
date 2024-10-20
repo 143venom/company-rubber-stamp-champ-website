@@ -1,0 +1,224 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Rubber Stamp Solution
+        
+{% endblock %}
+
+{% block content %}
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Find message elements and set a timer to remove them after 3 seconds
+        const messages = document.querySelectorAll('.alert');
+        if (messages.length > 0) {
+            setTimeout(function() {
+                messages.forEach(function(message) {
+                    message.style.display = 'none';
+                });
+            }, 3000);
+        }
+    });
+</script>
+
+        <!-- Displaying messages -->
+        <div id="message-container" class="col-12">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% else %}alert-info{% endif %}" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+<!-- Navbar Start -->
+   
+    <!-- Navbar & Carousel Start -->
+    <div class="container-fluid position-relative p-0">
+        <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
+            <a href="index.html" class="navbar-brand p-0">
+                <img src="{% static "img/logo (2).png" %}" alt="Comapny Rubber Stamp Champ">
+                <!-- <h1 class="m-0"><i class=""></i>Rubber Stamp Champ</h1> -->
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="fa fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto py-0">
+                    <a href="{% url "index" %}" class="nav-item nav-link">Home</a>
+                    <a href="{% url "post_index" %}" class="nav-item nav-link">Blog</a>
+                    <a href="{% url "about" %}" class="nav-item nav-link">About us</a>
+                    <a href="{% url "service_index" %}" class="nav-item nav-link">Stamps</a>
+                    <a href="{% url "printing" %}" class="nav-item nav-link">Printing services</a>
+                    <a href="{% url "itservice" %}" class="nav-item nav-link active">IT service</a>
+                    <a href="{% url "photographyservice" %}" class="nav-item nav-link ">Photography service</a>
+                    <a href="{% url "contacts" %}" class="nav-item nav-link">Contact us</a>
+                </div>
+                <button type="button" class="btn text-primary ms-3" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search"></i></butaton>
+                <a href="{% url 'contacts' %}" class="btn btn-primary py-2 px-4 ms-3">Get Quotation</a>
+            </div>
+        </nav>
+        <div class="container-fluid bg-primary py-5 bg-header" style="margin-bottom: 90px;">
+            <div class="row py-5">
+                <div class="col-12 pt-lg-5 mt-lg-5 text-center">
+                    <h1 class="display-4 text-primary animated zoomIn">It Services</h1>
+                    <a href="" class="h5 text-primary"></a>
+                    <!-- <i class="far fa-circle text-primary px-2"></i> -->
+                    <a href="" class="h5 text-primary"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+    
+
+ <!-- Blog Start -->
+ <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-lg-8">
+                <!-- Blog Detail Start -->
+                {% for n in services %}
+                <div class="mb-5">
+                    <img class="img-fluid w-100 rounded mb-5" src="{{n.image.url}}" alt="">
+                    <h1 class="mb-4">{{n.title}}</h1>
+                    <p>{{n.description}}</p>
+                </div>
+                {% endfor %}
+
+                <!-- Blog Detail End -->
+
+                <!-- Comment List Start -->
+
+                <!-- Comment List End -->
+
+                <!-- Comment Form Start -->
+                <div class="bg-light rounded p-5">
+                    <div class="section-title section-title-sm position-relative pb-3 mb-4">
+                        <h3 class="mb-0">Searching for best IT Service?</h3>
+                    </div>
+                    <form method="POST" action="">
+                        {% csrf_token %}
+                        <div class="row g-3">
+                            <div class="col-12 col-sm-6">
+                                <input type="text" class="form-control bg-white border-0" name="name" placeholder="Your Name" style="height: 55px;" required autocomplete="name">
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <input type="email" class="form-control bg-white border-0" name="email" placeholder="Your Email" style="height: 55px;" required autocomplete="email">
+                            </div>
+                            <div class="col-12">
+                                <input type="url" class="form-control bg-white border-0" name="website" placeholder="Website" style="height: 55px;" autocomplete="url">
+                            </div>
+                            <div class="col-12">
+                                <textarea class="form-control bg-white border-0" rows="5" name="comment" placeholder="Comment" required></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">Get IT Services Now</button>
+                            </div>
+                        </div>
+                    </form>
+                    
+                </div>
+                <!-- Comment Form End -->
+            </div>
+
+            <!-- Sidebar Start -->
+            <div class="col-lg-4">
+                <!-- Search Form Start -->
+                <div class="mb-5 wow slideInUp" data-wow-delay="0.1s">
+                    <div class="input-group">
+                        <input type="text" class="form-control p-3" placeholder="Keyword">
+                        <button class="btn btn-primary px-4"><i class="bi bi-search"></i></button>
+                    </div>
+                </div>
+                <!-- Search Form End -->
+
+                <!-- Category Start -->
+                <div class="mb-5 wow slideInUp" data-wow-delay="0.1s">
+                    <div class="section-title section-title-sm position-relative pb-3 mb-4">
+                        <h3 class="mb-0">Our Recent Projects.</h3>
+                    </div>
+                    <div class="link-animated d-flex flex-column justify-content-start">
+                        <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" href="#"><i class="bi bi-arrow-right me-2"></i>NJS Marketing</a>
+                        <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" href="#"><i class="bi bi-arrow-right me-2"></i>MOR General Trading</a>
+                        <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" href="#"><i class="bi bi-arrow-right me-2"></i>Makeup Artist Dubai</a>
+                        <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" href="#"><i class="bi bi-arrow-right me-2"></i>Pioners Medical</a>
+                        <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" href="#"><i class="bi bi-arrow-right me-2"></i>Bayat Al Haya</a>
+                    </div>
+                </div>
+                <!-- Category End -->
+
+                <!-- Recent Post Start -->
+               
+                <!-- Recent Post End -->
+
+                <!-- Image Start -->
+                <div class="mb-5 wow slideInUp" data-wow-delay="0.1s">
+                    <img src="img/blog-1.jpg" alt="" class="img-fluid rounded">
+                </div>
+                <!-- Image End -->
+
+                <!-- Tags Start -->
+                <div class="mb-5 wow slideInUp" data-wow-delay="0.1s">
+                    <div class="section-title section-title-sm position-relative pb-3 mb-4">
+                        <h3 class="mb-0">Service We Provide</h3>
+                    </div>
+                    <div class="d-flex flex-wrap m-n1">
+                        <a href="" class="btn btn-light m-1">Design</a>
+                        <a href="" class="btn btn-light m-1">Development</a>
+                        <a href="" class="btn btn-light m-1">Marketing</a>
+                        <a href="" class="btn btn-light m-1">SEO</a>
+                        <a href="" class="btn btn-light m-1">Writing</a>
+                        <a href="" class="btn btn-light m-1">Consulting</a>
+                        <a href="" class="btn btn-light m-1">Design</a>
+                        <a href="" class="btn btn-light m-1">Development</a>
+                        <a href="" class="btn btn-light m-1">Marketing</a>
+                        <a href="" class="btn btn-light m-1">SEO</a>
+                        <a href="" class="btn btn-light m-1">Writing</a>
+                        <a href="" class="btn btn-light m-1">Consulting</a>
+                    </div>
+                </div>
+                <!-- Tags End -->
+
+                <!-- Plain Text Start -->
+                <div class="wow slideInUp" data-wow-delay="0.1s">
+                    <div class="section-title section-title-sm position-relative pb-3 mb-4">
+                        <h3 class="mb-0">Plain Text</h3>
+                    </div>
+                    <div class="bg-light text-center" style="padding: 30px;">
+                        <p>Vero sea et accusam justo dolor accusam lorem consetetur, dolores sit amet sit dolor clita kasd justo, diam accusam no sea ut tempor magna takimata, amet sit et diam dolor ipsum amet diam</p>
+                        <a href="" class="btn btn-primary py-2 px-4">Read More</a>
+                    </div>
+                </div>
+                <!-- Plain Text End -->
+            </div>
+            <!-- Sidebar End -->
+        </div>
+    </div>
+</div>
+<!-- Blog End -->
+
+
+<!-- Vendor Start -->
+<div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container py-5 mb-5">
+        <div class="bg-white">
+            <div class="owl-carousel vendor-carousel">
+                <img src="img/vendor-1.jpg" alt="">
+                <img src="img/vendor-2.jpg" alt="">
+                <img src="img/vendor-3.jpg" alt="">
+                <img src="img/vendor-4.jpg" alt="">
+                <img src="img/vendor-5.jpg" alt="">
+                <img src="img/vendor-6.jpg" alt="">
+                <img src="img/vendor-7.jpg" alt="">
+                <img src="img/vendor-8.jpg" alt="">
+                <img src="img/vendor-9.jpg" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Vendor End -->
+
+{% endblock %}

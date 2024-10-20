@@ -1,0 +1,196 @@
+{% extends "base.html" %} {% load static %} 
+
+{% block title %}
+Printing Services
+{% endblock %}
+
+{% block content %}
+<!-- Navbar Start -->
+   
+    <!-- Navbar & Carousel Start -->
+    <div class="container-fluid position-relative p-0">
+      <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
+          <a href="{% url "index" %}" class="navbar-brand p-0">
+              <img src="{% static "img/logo (2).png" %}" alt="Comapny Rubber Stamp Champ">
+              <!-- <h1 class="m-0"><i class=""></i>Rubber Stamp Champ</h1> -->
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+              <span class="fa fa-bars"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+              <div class="navbar-nav ms-auto py-0">
+                  <a href="{% url "index" %}" class="nav-item nav-link">Home</a>
+                  <a href="{% url "post_index" %}" class="nav-item nav-link">Blog</a>
+                  <a href="{% url "about" %}" class="nav-item nav-link">About us</a>
+                  <a href="{% url "service_index" %}" class="nav-item nav-link">Stamps</a>
+                  <a href="{% url "printing" %}" class="nav-item nav-link active">Printing services</a>
+                  <a href="{% url "itservice" %}" class="nav-item nav-link ">IT service</a>
+                  <a href="{% url "photographyservice" %}" class="nav-item nav-link ">Photography service</a>
+                  <a href="{% url "contacts" %}" class="nav-item nav-link">Contact us</a>
+              </div>
+              <button type="button" class="btn text-primary ms-3" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search"></i></butaton>
+              <a href="{% url "contacts" %}" class="btn btn-primary py-2 px-4 ms-3">Get Quotation</a>
+          </div>
+      </nav>
+      <div class="container-fluid bg-primary py-5 bg-header" style="margin-bottom: 90px;">
+          <div class="row py-5">
+              <div class="col-12 pt-lg-5 mt-lg-5 text-center">
+                  <h1 class="display-4 text-primary animated zoomIn">Printing Services</h1>
+                  <a href="" class="h5 text-primary"></a>
+                  <!-- <i class="far fa-circle text-primary px-2"></i> -->
+                  <a href="" class="h5 text-primary"></a>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- Navbar End -->
+
+
+<!-- Blog Start -->
+<div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+  <div class="container py-5">
+    <div class="row g-5">
+      <!-- Blog list Start -->
+      <div class="col-lg-8">
+        <div class="row g-5">
+          {% for i in ps %}
+          <div class="col-md-6 wow slideInUp" data-wow-delay="0.1s">
+            <div class="blog-item bg-light rounded overflow-hidden">
+              <div class="blog-img position-relative overflow-hidden">
+                <img class="img-fluid" src="{{i.image.url}}"
+                alt="" />
+                <a
+                  class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4"
+                  href=""
+                  >{{i.title}}</a
+                >
+              </div>
+              <div class="p-4">
+                <h4 class="mb-3">{{i.title}}</h4>
+                <!-- <p>Self inking stamps are a modern type of stamp that may be manufactured in minutes</p> -->
+                <a class="text-uppercase" href="{% url "contacts" %}"
+                  >Order Now <i class="bi bi-arrow-right"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+          <div class="col-12 wow slideInUp" data-wow-delay="0.1s">
+            <nav aria-label="Page navigation">
+              <ul class="pagination pagination-lg m-0">
+                <li class="page-item disabled">
+                  <a class="page-link rounded-0" href="#" aria-label="Previous">
+                    <span aria-hidden="true"
+                      ><i class="bi bi-arrow-left"></i
+                    ></span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+      <!-- Blog list End -->
+
+      <!-- Sidebar Start -->
+      <div class="col-lg-4">
+        <!-- Search Form Start -->
+        <div class="mb-5 wow slideInUp" data-wow-delay="0.1s">
+          <div class="input-group">
+            <input type="text" class="form-control p-3" placeholder="Keyword" />
+            <button class="btn btn-primary px-4">
+              <i class="bi bi-search"></i>
+            </button>
+          </div>
+        </div>
+        <!-- Search Form End -->
+
+        <!-- Category Start -->
+        <div class="mb-5 wow slideInUp" data-wow-delay="0.1s">
+          <div
+            class="section-title section-title-sm position-relative pb-3 mb-4"
+          >
+            <h3 class="mb-0">Categories</h3>
+          </div>
+          <div class="link-animated d-flex flex-column justify-content-start">
+            <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" href="#"
+              ><i class="bi bi-arrow-right me-2"></i>Stamps</a
+            >
+            <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" href="#"
+              ><i class="bi bi-arrow-right me-2"></i>Embossing Seals</a
+            >
+            <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" href="#"
+              ><i class="bi bi-arrow-right me-2"></i>Business Cards</a
+            >
+            <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" href="#"
+              ><i class="bi bi-arrow-right me-2"></i>Letter Heads</a
+            >
+            <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" href="#"
+              ><i class="bi bi-arrow-right me-2"></i>Envelopes</a
+            >
+            <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" href="#"
+              ><i class="bi bi-arrow-right me-2"></i>Invoice Books</a
+            >
+            <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" href="#"
+              ><i class="bi bi-arrow-right me-2"></i>Receipt Books</a
+            >
+            <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" href="#"
+              ><i class="bi bi-arrow-right me-2"></i>Roll Ups</a
+            >
+            <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" href="#"
+              ><i class="bi bi-arrow-right me-2"></i>Office Signs</a
+            >
+            <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" href="#"
+              ><i class="bi bi-arrow-right me-2"></i>Brochures</a
+            >
+            <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" href="#"
+              ><i class="bi bi-arrow-right me-2"></i>Folders</a
+            >
+            <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" href="#"
+              ><i class="bi bi-arrow-right me-2"></i>Name Badges</a
+            >
+            <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" href="#"
+              ><i class="bi bi-arrow-right me-2"></i>Gift Items</a
+            >
+            <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" href="#"
+              ><i class="bi bi-arrow-right me-2"></i>Promotional Flyers</a
+            >
+          </div>
+        </div>
+        <!-- Category End -->
+
+        <!-- Image Start -->
+        <div class="mb-5 wow slideInUp" data-wow-delay="0.1s">
+          <img src="{% static "img/BROCHURES.jpg" %}" alt="" class="img-fluid rounded" />
+        </div>
+        <!-- Image End -->
+
+        <!-- Plain Text Start -->
+        <div class="wow slideInUp" data-wow-delay="0.1s">
+          <div
+            class="section-title section-title-sm position-relative pb-3 mb-4"
+          >
+            <h3 class="mb-0">Why to choose us?</h3>
+          </div>
+          <div class="bg-light text-center" style="padding: 30px">
+            <p>
+              We can create a rubber stamp for your personal or business
+              purpose. All you have to do is send us a copy of your
+              government-issued legal trading license and an email to
+              info@companyrubberstampchamp.com or WhatsApp us at +971528068077.
+              We can design round, oval, or square stamps for you and submit
+              them for your approval. We'll begin to work on the stamps as soon
+              as you accept the design, and they'll be ready in 20 minutes
+            </p>
+            <a href="{% url "contacts" %}" class="btn btn-primary py-2 px-4">Contact Us</a>
+          </div>
+        </div>
+        <!-- Plain Text End -->
+      </div>
+      <!-- Sidebar End -->
+    </div>
+  </div>
+</div>
+<!-- Blog End -->
+
+{% endblock content %}

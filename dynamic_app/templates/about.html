@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+About Us
+{% endblock %}
+
+
+{% block content %}
+<!-- Navbar Start -->
+   
+    <!-- Navbar & Carousel Start -->
+    <div class="container-fluid position-relative p-0">
+        <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
+            <a href="{% url "index" %}" class="navbar-brand p-0">
+                <img src="{% static "img/loho.png" %}" alt="Comapny Rubber Stamp Champ">
+                <!-- <h1 class="m-0"><i class=""></i>Rubber Stamp Champ</h1> -->
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="fa fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto py-0">
+                    <a href="{% url "index" %}" class="nav-item nav-link">Home</a>
+                    <a href="{% url "post_index" %}" class="nav-item nav-link">Blog</a>
+                    <a href="{% url "about" %}" class="nav-item nav-link active">About us</a>
+                    <a href="{% url "service_index" %}" class="nav-item nav-link">Stamps</a>
+                    <a href="{% url "printing" %}" class="nav-item nav-link">Printing services</a>
+                    <a href="{% url "itservice" %}" class="nav-item nav-link ">IT service</a>
+                    <a href="{% url "photographyservice" %}" class="nav-item nav-link ">Photography service</a>
+                    <!-- <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                        <div class="dropdown-menu m-0">
+                            <a href="price.html" class="dropdown-item">Pricing Plan</a>
+                            <a href="feature.html" class="dropdown-item">Our features</a>
+                            <a href="team.html" class="dropdown-item">Team Members</a>
+                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+                            <a href="quote.html" class="dropdown-item">Free Quote</a>
+                        </div>
+                    </div> -->
+                    <a href="{% url "contacts" %}" class="nav-item nav-link">Contact us</a>
+                </div>
+                <button type="button" class="btn text-primary ms-3" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search"></i></butaton>
+                <a href="https://htmlcodex.com/startup-company-website-template" class="btn btn-primary py-2 px-4 ms-3">Get Quotation</a>
+            </div>
+        </nav>
+        <div class="container-fluid bg-primary py-5 bg-header" style="margin-bottom: 90px;">
+            <div class="row py-5">
+                <div class="col-12 pt-lg-5 mt-lg-5 text-center">
+                    <h1 class="display-4 text-white animated zoomIn">About Us</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Navbar End -->
+   <!-- About Start -->
+   <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-lg-7">
+                <div class="section-title position-relative pb-3 mb-5">
+                    <h5 class="fw-bold text-primary text-uppercase">About Us</h5>
+                    <h1 class="mb-0">The Best Rubber Stamp Solution With 10 Years Of Experience</h1>
+                </div>
+                <p class="mb-4">A good quality product and efficient service at an affordable cost is what customers can expect from us. We maintain a stringent product and service quality procedures to assure that every customer we serve would get exactly what they want at a considerably in less time.
+
+                </p>
+                <div class="row g-0 mb-3">
+                    <div class="col-sm-6 wow zoomIn" data-wow-delay="0.2s">
+                        <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>Award Winning</h5>
+                        <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>Professional Staff</h5>
+                    </div>
+                    <div class="col-sm-6 wow zoomIn" data-wow-delay="0.4s">
+                        <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>Quality Product</h5>
+                        <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>Fair Prices</h5>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center mb-4 wow fadeIn" data-wow-delay="0.6s">
+                    <div class="bg-primary d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px;">
+                        <i class="fa fa-phone-alt text-white"></i>
+                    </div>
+                    <div class="ps-4">
+                        <h5 class="mb-2">For further information please call</h5>
+                        <h4 class="text-primary mb-0">+971 52 806 8077</h4>
+                    </div>
+                </div>
+                <a href="quote.html" class="btn btn-primary py-3 px-5 mt-3 wow zoomIn" data-wow-delay="0.9s">Request A Quote</a>
+            </div>
+            <div class="col-lg-5" style="min-height: 500px;">
+                <div class="position-relative h-100">
+                    <img class="position-absolute w-100 h-100 rounded wow zoomIn" data-wow-delay="0.9s" src="{% static "img/about.jpeg" %}" style="object-fit: cover;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- About End -->
+{% endblock content %}

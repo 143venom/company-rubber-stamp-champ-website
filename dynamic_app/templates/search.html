@@ -1,0 +1,222 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+search Results
+
+        
+{% endblock %}
+
+{% block content %}
+<!-- Navbar Start -->
+   
+    <!-- Navbar & Carousel Start -->
+    <div class="container-fluid position-relative p-0">
+        <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
+            <a href="{% url "index" %}" class="navbar-brand p-0">
+                <img src="{% static "img/loho.png" %}" alt="Comapny Rubber Stamp Champ">
+                <!-- <h1 class="m-0"><i class=""></i>Rubber Stamp Champ</h1> -->
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="fa fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto py-0">
+                    <a href="{% url "index" %}" class="nav-item nav-link">Home</a>
+                    <a href="{% url "post_index" %}" class="nav-item nav-link ">Blog</a>
+                    {% comment %} <div class="nav-item dropdown">
+                        <a href="{% url "blog" %}" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Blog</a>
+                        <div class="dropdown-menu m-0">
+                            <a href="{% url "blog" %}" class="dropdown-item">Blog Grid</a>
+                            <a href="detail.html" class="dropdown-item">Blog Detail</a>
+                        </div>
+                    </div> {% endcomment %}
+                    <a href="{% url "about" %}" class="nav-item nav-link">About us</a>
+                    <a href="{% url "service_index" %}" class="nav-item nav-link">Stamps</a>
+                    <a href="{% url "printing" %}" class="nav-item nav-link">Printing services</a>
+                    <!-- <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                        <div class="dropdown-menu m-0">
+                            <a href="price.html" class="dropdown-item">Pricing Plan</a>
+                            <a href="feature.html" class="dropdown-item">Our features</a>
+                            <a href="team.html" class="dropdown-item">Team Members</a>
+                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+                            <a href="quote.html" class="dropdown-item">Free Quote</a>
+                        </div>
+                    </div> -->
+                    <a href="{% url "contacts" %}" class="nav-item nav-link">Contact us</a>
+                </div>
+                <button type="button" class="btn text-primary ms-3" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search"></i></button>
+                <a href="https://htmlcodex.com/startup-company-website-template" class="btn btn-primary py-2 px-4 ms-3">Get Quotation</a>
+            </div>
+        </nav>
+        <div class="container-fluid bg-primary py-5 bg-header" style="margin-bottom: 90px;">
+            <div class="row py-5">
+                <div class="col-12 pt-lg-5 mt-lg-5 text-center">
+                    <h1 class="display-4 text-white animated zoomIn">Services</h1>
+                    <a href="" class="h5 text-white">Home</a>
+                    <i class="far fa-circle text-white px-2"></i>
+                    <a href="" class="h5 text-white">Services</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+<!-- Blog Start -->
+<div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container py-5">
+      <div class="row g-5">
+        <!-- Blog list Start -->
+        <div class="col-lg-8">
+          <div class="row g-5">
+            <h2>search result:</h2>
+            {% if posts|length < 1 %}
+            <h4>No Search Result</h4>
+            You search query: <b>{{query}}</b> did not match any documents <br>
+            Suggestions:
+            <ul>
+              <li>
+                Try diffrent keywords.
+              </li>
+              <li>
+                Try mre general keywords.
+              </li>
+              <li>
+                Try fewer keywords.
+              </li>
+            </ul>
+
+            
+            
+            {% endif %}
+
+
+            
+            {% for post in posts %}
+            <div class="col-md-6 wow slideInUp" data-wow-delay="0.1s">
+              <div class="blog-item bg-light rounded overflow-hidden">
+                <div class="blog-img position-relative overflow-hidden">
+                  <img class="img-fluid" src="{{post.image.url}}" alt="" />
+                  <a
+                    class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4"
+                    href="{% url 'post_details' post.id %}"
+                    >{{ post.title }}</a
+                  >
+                </div>
+                <div class="p-4">
+                  <!-- <div class="d-flex mb-3">
+                                      <small class="me-3"><i class="far fa-user text-primary me-2"></i>John Doe</small>
+                                      <small><i class="far fa-calendar-alt text-primary me-2"></i>01 Jan, 2045</small>
+                                  </div> -->
+                  <h4 class="mb-3">{{ post.title }}</h4>
+                  <p>{{ post.post_desc }}</p>
+                  <a class="text-uppercase" href="{% url "contacts" %}"
+                    >Order Now <i class="bi bi-arrow-right"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+
+            <div class="col-12 wow slideInUp" data-wow-delay="0.1s">
+              {% if posts.has_other_pages %}
+              <nav aria-label="Page navigation">
+                <ul class="pagination pagination-lg m-0">
+                  {% if posts.has_previous %}
+                  <li class="page-item">
+                    <a
+                      class="page-link rounded-0"
+                      href="?page=1"
+                      aria-label="Previous"
+                    >
+                      <span aria-hidden="true"
+                        ><i class="bi bi-arrow-left"></i
+                      ></span>
+                    </a>
+                  </li>
+                  {% endif %} 
+                  {% for i in posts.paginator.page_range %}
+                  {% if posts.number == i  %}
+                  <li class="page-item active">
+                    <a class="page-link" href="#">{{ i }}</a>
+                  </li>
+                  {% else %}
+                  <li class="page-item">
+                    <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                  </li>
+                  {% endif %} 
+                  {% endfor %} 
+                  {% if posts.has_next %}
+                  <li class="page-item">
+                    <a
+                      class="page-link rounded-0"
+                      href="?page={{ posts.next_page_number }}"
+                      aria-label="Next"
+                    >
+                      <span aria-hidden="true"
+                        ><i class="bi bi-arrow-right"></i
+                      ></span>
+                    </a>
+                  </li>
+                  {% endif %}
+                </ul>
+              </nav>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <!-- Blog list End -->
+
+                <!-- Sidebar Start -->
+                <div class="col-lg-4">
+                    <!-- Search Form Start -->
+                    <div class="mb-5 wow slideInUp" data-wow-delay="0.1s">
+                        <div class="input-group">
+                            <input type="text" class="form-control p-3" placeholder="Keyword">
+                            <button class="btn btn-primary px-4"><i class="bi bi-search"></i></button>
+                        </div>
+                    </div>
+                    <!-- Search Form End -->
+    
+                    <!-- Category Start -->
+                    <div class="mb-5 wow slideInUp" data-wow-delay="0.1s">
+                        <div class="section-title section-title-sm position-relative pb-3 mb-4">
+                            <h3 class="mb-0">Categories</h3>
+                        </div>
+                        <div class="link-animated d-flex flex-column justify-content-start">
+                            <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" href="#"><i class="bi bi-arrow-right me-2"></i>Pre-Inked Stamp</a>
+                            <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" href="#"><i class="bi bi-arrow-right me-2"></i>Manual Stamp</a>
+                            <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" href="#"><i class="bi bi-arrow-right me-2"></i>Embossing Seal</a>
+                            <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" href="#"><i class="bi bi-arrow-right me-2"></i>Wax Seal</a>
+                            <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" href="#"><i class="bi bi-arrow-right me-2"></i>Manual Stamp</a>
+                        </div>
+                    </div>
+                    <!-- Category End -->
+    
+                    <!-- Image Start -->
+                    <div class="mb-5 wow slideInUp" data-wow-delay="0.1s">
+                        <img src="{% static "img/blog-1.jpg" %}" alt="" class="img-fluid rounded">
+                    </div>
+                    <!-- Image End -->
+
+    
+                    <!-- Plain Text Start -->
+                    <div class="wow slideInUp" data-wow-delay="0.1s">
+                        <div class="section-title section-title-sm position-relative pb-3 mb-4">
+                            <h3 class="mb-0">Why to choose us?</h3>
+                        </div>
+                        <div class="bg-light text-center" style="padding: 30px;">
+                            <p>Vero sea et accusam justo dolor accusam lorem consetetur, dolores sit amet sit dolor clita kasd justo, diam accusam no sea ut tempor magna takimata, amet sit et diam dolor ipsum amet diam</p>
+                            <a href="" class="btn btn-primary py-2 px-4">Contact Us</a>
+                        </div>
+                    </div>
+                    <!-- Plain Text End -->
+                </div>
+                <!-- Sidebar End -->
+            </div>
+        </div>
+    </div>
+    <!-- Blog End -->
+
+{% endblock content %}
